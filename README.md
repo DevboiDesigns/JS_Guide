@@ -124,8 +124,8 @@ const myObject = {
 
 ## Functions
 
-* returning values
 *code after return will never run*
+
 *use return to exit the function*
 
 ```js 
@@ -225,7 +225,7 @@ for (let i = 0; i < 3; i++) {
 
 ## for-of
 
-* build to work with arrays
+* built to work with arrays
 
 ```js
 const numbers = [1, 2, 3, 4];
@@ -237,7 +237,7 @@ for (const num of numbers) {
 
 ## for-in
 
-* build to work with objects
+* built to work with objects
 
 ```js
 let myObject = {
@@ -341,7 +341,9 @@ try {
 * Async
 
 **allows download of script immediately while still parsing, but executes code immediately**
+
 *generally for when code doesnt rely on view*
+
 *e.g. sending data to a server*
 
 ```js
