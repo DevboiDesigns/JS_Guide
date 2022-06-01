@@ -1,4 +1,5 @@
 # JavaScript
+* [JavaScript Docs](https://developer.mozilla.org/en-US/)
 * dynamic, interpreted and weakly typed 
 * compiled at runtime 
 * make webpages more dynamic 
@@ -26,6 +27,10 @@
 * Node.js can be exectued on any machine, used to build web backends often
 * Node.js can access the local filesystem, interact with the operating system etc. It *Cant* manipulate HTML or CSS
 
+## Key Shortcuts in  VSCode 
+* `cmd` + `d` = select multiple versions of same name/ object 
+* `shft` + `cmd` + `space` = show parameters of method 
+
 # Syntax
 
 ## Varibles & Constants
@@ -52,6 +57,26 @@ const totalUsers = 15
 * `**` = exponentiation (e.g. 2 ** 3 = 8)
 * `+=`, `-=`, `*=`, `/=`
 * add/ subtract one = `number++` / `number--` increment, decrement 
+* `||` or
+* `&&` and 
+
+**Comparison Operators**
+* `!` not 
+* `>=` `<=` - greater/ less than or equal 
+* `==`, `!=` evalutes true if same value
+* `===`, `!==` evalutes true if same type & value  - prefer 
+
+**Double !!**
+* `!!""` = false `!!1` = true 
+* will force a true/ false not falsy or truthy
+
+**if falsy will default to value** 
+
+```js
+const name = someInput || "Max"
+
+const name = isLoggedIn || "Max"
+```
 
 ## Data Types 
 
@@ -113,7 +138,7 @@ const result = add(5,5)
 ```
 
 ## Converting types
-* `+userInput.value` - pasrseInt
+* `+userInput.value` - parseInt
 * `parseInt(userInput.value)`
 * `currentResult.toString()`
 
@@ -154,10 +179,151 @@ typeof name
 // string 
 ```
 
-## Key Shortcuts in  VSCode 
-* `cmd` + `d` = select multiple versions of same name/ object 
-* `shft` + `cmd` + `space` = show parameters of method 
+## Conditional Code 
 
+### If - else - else if 
+
+```js
+if (calculateType === "add") {
+    add()
+} else if (calculateType === "subtract") {
+  subtract()
+} else {
+  doNothing()
+}
+```
+
+## Switch 
+
+```js
+let LOGONE = "One";
+let LOGTWO = "Two";
+let LOGTHREE = "Three";
+
+// Example Switch
+switch (battleLog) {
+  case LOGONE:
+    console.log("One");
+    break;
+  case LOGTWO:
+    console.log("Two");
+    break;
+  case LOGTHREE:
+    console.log(Three);
+    break;
+}
+```
+# Loops
+
+## for 
+
+```js
+for (let i = 0; i < 3; i++) {
+  console.log(i)
+}
+```
+
+## for-of
+
+* build to work with arrays
+
+```js
+const numbers = [1, 2, 3, 4];
+
+for (const num of numbers) {
+  console.log(num)
+}
+```
+
+## for-in
+
+* build to work with objects
+
+```js
+let myObject = {
+  name: "Chris",
+  age: 36,
+};
+
+for (const key in myObject) {
+  console.log(key) // key - name 
+  console.log(myObject[key]) // value 
+}
+```
+
+## while
+
+* runs until condition is no longer meet 
+
+```js
+while (isLoggedIn) {
+  // do something 
+}
+```
+
+### while-do
+
+* will execute logic first 
+
+```js
+let j = 0;
+do {
+  console.log(j);
+  j++;
+} while (j < 3);
+```
+
+### Labeled Statements
+
+* will break a particular loop/ statement 
+* not as common 
+
+```js
+let j = 0;
+outerWhile: do {
+  console.log("Outer", j);
+  innerFor: for (let k = 0; j < 5; j++) {
+    if (k === 3) {
+      break outerWhile
+    }
+  }
+} while (numberNine < 3)
+```
+
+## break & continue
+
+* `break` = will exit out of a loop or function 
+* `continue` = will skip iteration, and continue with next iteration 
+
+# Error Handling 
+* `throw` - if marked will throw error when init
+* `try` & `catch` - how to handle throw
+* `finally` - will always run no matter what - any cleanup - for re-throws : not as commom
+
+**Usage**
+
+```js
+function getMaxLifeValues() {
+  const enteredValue = prompt("Please enter a max life amoutn", "100");
+  const parsedValue = parseInt(enteredValue);
+
+  // isNaN() will return true if not a numner
+  if (isNaN(parsedValue) || parsedValue <= 0) {
+    throw { message: "Invalide user input not a number" }; // marked with `throw` 
+    chosenMaxLife = 100;
+  }
+  return parsedValue;
+}
+try {
+  let choosenMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error);
+  choosenMaxLife = 100;
+  alert(`Oops: ${error}`);
+} finally {
+  console.log("This code alwasy runs")
+}
+```
 
 # Importing Scripts in Browser 
 
