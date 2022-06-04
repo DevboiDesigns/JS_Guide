@@ -34,6 +34,15 @@
 
 # Syntax
 
+# Strict Mode
+* make first line of code 
+* helps avoid mistakes and bugs
+* adds print statements to console 
+
+```js
+"use strict";
+```
+
 ## Varibles & Constants
 
 * camelCase 
@@ -139,6 +148,7 @@ const myObject = {
 
 *use return to exit the function*
 
+**declaration**
 ```js 
 function add(num1, num2) {
   const result = num1 + num2;
@@ -146,6 +156,25 @@ function add(num1, num2) {
 }
 
 const result = add(5,5)
+```
+
+**expression**
+```js
+const add = function add(num1, num2) {
+  const result = num1 + num2;
+  return result;
+}
+```
+
+**arrow**
+```js
+// Function Expression
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+
+// Arrow Function
+const calcAge2 = (birthYear) => 2037 - birthYear;
 ```
 
 ## Converting types
