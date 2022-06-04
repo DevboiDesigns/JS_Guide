@@ -7,6 +7,7 @@
 * Browser & Server 
 
 **Dynamic - Interpreted**
+* do not have to manually define the type
 * not pre-compiled - parsed and compiled on the fly
 * code evaulted and executed at runtime
 * code can change at runtime ( type of variable )
@@ -51,6 +52,7 @@ const totalUsers = 15
 ```
 
 ## Operators
+* operators have order of precendance [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
 * `+, -, *, /`
 * `%` = divide two numbes, yield remainder 
@@ -82,11 +84,15 @@ const name = isLoggedIn || "Max"
 
 *browser always returns a string*
 
-* Numbers 
+* Numbers - floating point
 * Strings 
 * Booleans
 * Objects: { }
 * Arrays: [ ]
+* Undefined
+* Null
+* Symbol
+* BigInt
 
 **String catonation**
 
@@ -122,6 +128,11 @@ const myObject = {
 };
 ```
 
+## var, let, const  
+* `var` = can be mutated (function scoped) (older-avoid using)
+* `let` = can be mutated (block scoped)
+* `const` = can not be mutated (default to)
+
 ## Functions
 
 *code after return will never run*
@@ -138,9 +149,11 @@ const result = add(5,5)
 ```
 
 ## Converting types
-* `+userInput.value` - parseInt
+* `+userInput.value` - parseInt = `Number("1991")`
 * `parseInt(userInput.value)`
 * `currentResult.toString()`
+* `String(123)`
+* `Boolean(isTrue)`
 
 ## Comments 
 * `cmd` + `/`
@@ -213,6 +226,37 @@ switch (battleLog) {
     break;
 }
 ```
+
+```js
+switch (day) {
+  case "monday":
+    console.log("Mondy");
+    console.log("Coding meetup");
+    break;
+  case "tuesday":
+    console.log("Tuesday");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("Wenesday & Thursday");
+    break;
+  case "friday":
+    console.log("Friday");
+    break;
+  default:
+    console.log("Not a work Day");
+}
+```
+
+## Ternary Operator
+
+```js
+let highestBMI =
+  markBMI > johnBMI
+    ? `Mark has the highest at ${markBMI} `
+    : `John has the highest at ${johnBMI}`;
+```
+
 # Loops
 
 ## for 
