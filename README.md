@@ -165,11 +165,15 @@ const myObject = {
 
 ## Functions
 
+- Parameters - what is specified between parentheses
+- Arguments - are the concrete values you pass to a function when calling
+
 _code after return will never run_
 
 _use return to exit the function_
 
 - basic declaration
+- hoisted to top
 
 ```js
 function add(num1, num2) {
@@ -180,7 +184,8 @@ function add(num1, num2) {
 const result = add(5, 5);
 ```
 
-- expression
+### expression
+- hoisted but initialized (cant use out of scope)
 
 ```js
 const add = function add(num1, num2) {
@@ -189,7 +194,7 @@ const add = function add(num1, num2) {
 };
 ```
 
-- arrow
+### arrow
 
 ```js
 // Function Expression
@@ -199,6 +204,33 @@ const calcAge = function (birthYear) {
 
 // Arrow Function
 const calcAge2 = (birthYear) => 2037 - birthYear;
+```
+
+### methods
+
+```js
+const person = {
+  greet: function greet() {
+    console.log('Hello there!');
+  },
+};
+
+person.greet();
+```
+
+### anonymous
+
+* not easy to debug because the name of function can not be shown by browser/ debugger 
+
+
+```js
+const start = function () {
+  console.log('Start');
+};
+
+startGameBtn.addEventListener('click', function () {
+  console.log('Start');
+});
 ```
 
 ## Converting types
