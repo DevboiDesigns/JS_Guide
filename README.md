@@ -1,4 +1,4 @@
-# JavaScript
+# Fundamentals
 
 - [JavaScript Docs](https://developer.mozilla.org/en-US/)
 - dynamic, interpreted and weakly typed
@@ -50,7 +50,7 @@
 
 # Syntax
 
-# Strict Mode
+## Strict Mode
 
 - make first line of code
 - helps avoid mistakes and bugs
@@ -151,7 +151,7 @@ _inlclude backslash in string_
 
 ```js
 const myObject = {
-  name: 'Time',
+  name: 'Tim',
   age: 23,
   website: null,
 };
@@ -169,7 +169,7 @@ _code after return will never run_
 
 _use return to exit the function_
 
-**declaration**
+- basic declaration
 
 ```js
 function add(num1, num2) {
@@ -180,7 +180,7 @@ function add(num1, num2) {
 const result = add(5, 5);
 ```
 
-**expression**
+- expression
 
 ```js
 const add = function add(num1, num2) {
@@ -189,7 +189,7 @@ const add = function add(num1, num2) {
 };
 ```
 
-**arrow**
+- arrow
 
 ```js
 // Function Expression
@@ -427,6 +427,11 @@ try {
   console.log('This code alwasy runs');
 }
 ```
+
+## Primitive & Reference Values
+
+- Primitive - Strings, Numbers, Booleans, null, undefined, & Symbols - (stored in memory on stack - lightweight)
+- Reference - all other objects (more expensive)
 
 # Importing Scripts in Browser
 
