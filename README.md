@@ -184,7 +184,8 @@ function add(num1, num2) {
 const result = add(5, 5);
 ```
 
-### expression
+### Expression
+
 - hoisted but initialized (cant use out of scope)
 
 ```js
@@ -194,7 +195,7 @@ const add = function add(num1, num2) {
 };
 ```
 
-### arrow
+### Arrow
 
 ```js
 // Function Expression
@@ -206,7 +207,19 @@ const calcAge = function (birthYear) {
 const calcAge2 = (birthYear) => 2037 - birthYear;
 ```
 
-### methods
+```js
+// ----------------------------------------- default arugment
+const getWinner = (compChoice, playerChoice = DEFAULT_CHOICE) =>
+  compChoice === playerChoice
+    ? RESULT_DRAW
+    : (compChoice === ROCK && playerChoice === PAPER) ||
+      (compChoice === PAPER && playerChoice === SCISSORS) ||
+      (compChoice === SCISSORS && playerChoice === ROCK)
+    ? RESULT_PLAYER_WINS
+    : RESULT_COMP_WINS;
+```
+
+### Methods
 
 ```js
 const person = {
@@ -218,10 +231,9 @@ const person = {
 person.greet();
 ```
 
-### anonymous
+### Anonymous
 
-* not easy to debug because the name of function can not be shown by browser/ debugger 
-
+- not easy to debug because the name of function can not be shown by browser/ debugger
 
 ```js
 const start = function () {
@@ -232,6 +244,122 @@ startGameBtn.addEventListener('click', function () {
   console.log('Start');
 });
 ```
+
+### Rest Parameters (Rest Operator)
+
+- rest operator must be last parameter
+- recomended over older rest operator
+
+```js
+// will spread into array
+const sumUp = (...numbers) => {
+  let sum = 0;
+  // in : will list all numbers out | of : loops through and adds
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum;
+};
+
+console.log(sumUp(1, 2, 3, 4, 5, 6, 7, 8)); // 36
+```
+
+- function declared with keyword `function` have access to `arguments` for rest operator without declaring parameter (older not-recomended)
+
+```js
+const subtractUp = function () {
+  let sum = 0;
+  // in : will list all numbers out | of : loops through and adds
+  for (const num of arguments) {
+    sum -= num;
+  }
+  return sum;
+};
+```
+
+### Nested
+
+```js
+const sumUp = (...numbers) => {
+  const validateNumber = (number) => {
+    // will check if is actually a number - isNaN (is not a number) true 0 : false number
+    return isNaN(number) ? 0 : number;
+  };
+  let sum = 0;
+  // in : will list all numbers out | of : loops through and adds
+  for (const num of numbers) {
+    sum += validateNumber(num);
+  }
+  return sum;
+};
+```
+
+### Callbacks
+
+```js
+// resultHanler = function to be called, can be any name common `cb`
+const sumUp = (resultHandler, ...numbers) => {
+  const validateNumber = (number) => {
+    return isNaN(number) ? 0 : number;
+  };
+  let sum = 0;
+  // in : will list all numbers out | of : loops through and adds
+  for (const num of numbers) {
+    sum += validateNumber(num);
+  }
+  // 1 parameter passed to call back
+  resultHandler(sum);
+};
+
+// 2 function to handle callbacks parameter
+const showResult = (result) => {
+  alert(`The result after adding all numbers is ${result}`);
+};
+
+// 3 execution of callback with function being passed original `sum` parameter
+console.log(sumUp(showResult, 1, 2, 3, 4, 5));
+```
+
+**REFACTOR**
+
+```js
+const combine = (resultHandler, method, ...numbers) => {
+  const validateNumber = (number) => {
+    return isNaN(number) ? 0 : number;
+  };
+  let sum = 0;
+  for (const num of numbers) {
+    if (method === 'ADD') {
+      sum += validateNumber(num);
+      resultHandler('adding', sum);
+    } else if (method === 'SUB') {
+      sum -= validateNumber(num);
+      resultHandler('subtracting', sum);
+    }
+  }
+};
+
+const showResult = (method, result) => {
+  alert(`The result after ${method} all numbers is ${result}`);
+};
+
+// BIND - a function that is not immediately called but set with parameters
+combine(showResult.bind(), 'ADD', 1, 2, 3, 4, 5); // 15
+combine(showResult, 'SUB', 1, 2, 3, 4, 5, 6, 7, 8); // -36
+```
+
+### .bind()
+
+- BIND - a function that is not immediately called but set with parameters
+- properties used on bind method are passed first to the function being set
+
+```js
+combine(showResult.bind(this, 'adding'), 'ADD', 1, 2, 3, 4, 5); // 15
+```
+
+### .apply()
+
+### .call()
 
 ## Converting types
 
