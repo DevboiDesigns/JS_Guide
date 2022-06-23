@@ -25,6 +25,13 @@ const newLi = document.createElement('li'); // tag name of element you want to c
 newLi.textContent = 'Item 4';
 ul.appendChild(newLi); // append new HTML element
 
+ul.lastElementChild.before(button);
+ul.lastElementChild.replaceWith(button);
+
+ul.remove();
+
+ul.parentElement.removeChild(ul)
+
 /*
 
 // Non-live List - will NOT reflect changes made

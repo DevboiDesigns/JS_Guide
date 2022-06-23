@@ -732,7 +732,7 @@ console.dir(ulAgain.nextElementSibling); // sibling element after selected eleme
 section.classList.toggle('visible'); // Toggle Class names
 ```
 
-## Creating & Inserting HTML
+## Inserting & Removing HTML
 
 **HTML String**
 
@@ -741,12 +741,19 @@ section.classList.toggle('visible'); // Toggle Class names
 **innerHTML**
 
 - `insertAdjacentHTML()`
-- `appendChild()` | `append()`
-- `prepend()` | `before()` | `after()` | `insertBefore()`
+- `innerHTML = `
 
 **Add (render) HTML String / specific position**
 
 - append new DOM element / node
+
+- `insertAdjacentElement()`
+- `appendChild()` | `append()`
+- `prepend()` | `before()` | `after()` | `insertBefore()`
+- `replaceChild()`
+- `removeChild()`
+- `remove()`
+- `item.parentElement.removeChild(item)`
 
 ### Adding Elements
 
@@ -762,10 +769,36 @@ section.innerHTML = '<h2>New Title</h2>';
 section.insertAdjacentHTML('beforeend', '<p>Something went wrong!</p>');
 ```
 
+- append
+
+```js
+list.append(newLi);
+```
+
 - programmatically insert code
 
 ```js
 const newLi = document.createElement('li'); // tag name of element you want to create
 newLi.textContent = 'Item 4';
 ul.appendChild(newLi); // append new HTML element
+```
+
+- cloning
+
+* copy elements
+
+```js
+const newLi2 = newLi.cloneNode(true);
+```
+
+- removing elements
+
+```js
+ul.remove();
+```
+
+**support on more browsers**
+
+```js
+ul.parentElement.removeChild(ul);
 ```
