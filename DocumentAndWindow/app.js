@@ -18,6 +18,13 @@ button.addEventListener('click', () => {
   section.classList.toggle('invisible');
 });
 
+section.innerHTML = '<h2>New Title</h2>'; // Will replace all other HTML Elements
+section.insertAdjacentHTML('beforeend', '<p>Something went wrong!</p>'); // will only render the new content
+
+const newLi = document.createElement('li'); // tag name of element you want to create
+newLi.textContent = 'Item 4';
+ul.appendChild(newLi); // append new HTML element
+
 /*
 
 // Non-live List - will NOT reflect changes made

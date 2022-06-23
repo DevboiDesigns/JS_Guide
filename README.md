@@ -731,3 +731,41 @@ console.dir(ulAgain.nextElementSibling); // sibling element after selected eleme
 ```js
 section.classList.toggle('visible'); // Toggle Class names
 ```
+
+## Creating & Inserting HTML
+
+**HTML String**
+
+- `createElement()`
+
+**innerHTML**
+
+- `insertAdjacentHTML()`
+- `appendChild()` | `append()`
+- `prepend()` | `before()` | `after()` | `insertBefore()`
+
+**Add (render) HTML String / specific position**
+
+- append new DOM element / node
+
+### Adding Elements
+
+- Will replace all other HTML Elements
+
+```js
+section.innerHTML = '<h2>New Title</h2>';
+```
+
+- will only render the new content
+
+```js
+section.insertAdjacentHTML('beforeend', '<p>Something went wrong!</p>');
+```
+
+- programmatically insert code
+
+```js
+const newLi = document.createElement('li'); // tag name of element you want to create
+newLi.textContent = 'Item 4';
+ul.appendChild(newLi); // append new HTML element
+```
