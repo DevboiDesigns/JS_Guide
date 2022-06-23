@@ -620,3 +620,114 @@ _e.g. sending data to a server_
   <script src="/01-Syntax/assets/scripts/app.js" async></script>
 </head>
 ```
+
+# DOM & HTML Code
+
+- exposed WEB API to allow JS to work with parsed document
+
+## Document
+
+- root DOM node
+- provides access to element querying, DOM content etc
+
+## Window
+
+- document is the property on window
+- the active Browser window/ Tab
+- global storage for script, also provides access to window-specific properties and methods
+
+**$0 gets access to last element in dev tools console**
+
+## Querying Elements
+
+**Returns single element, by CSS selector, by ID**
+**DOM nodes are just JS objects, reference values: these methods return object reference**
+
+- `querySelector()`
+- `getElementById()`
+
+**returns collections of elements (array like objects): NodeList**
+
+- `querySelectorAll()` - non-live NodeList
+- `getXByY` - live NodeList
+- `getElementsByTagName()`
+
+### Nodes
+
+- objects that make up the DOM
+- HTML tags are element nodes
+- text creates text nodes
+- attributes create attribute nodes
+
+### Elements
+
+- one type of node
+- have special properties and methods to interact with element (styles etc.)
+- can be selected in various ways
+- can be created and removed via JS
+
+## Query Methods
+
+- `document.querySelector(<CSS selector>)` - [Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+- `document.getElementById(<ID>)` - [Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+- `document.querySelectorAll(<CSS selector>)` - [Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+- `document.getElementsByClassName(<CSS CLASS>)` - [Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)
+- `document.getElementsByTagName(<HTML TAG>)` - [Docs](https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName)
+
+## DOM Traversal & Query Selection
+
+```js
+// Non-live List - will NOT reflect changes made
+//const listItemElements = document.querySelectorAll('li')
+
+// Live List - will reflect changes made to them
+const listItemElements = document.getElementsByTagName('li');
+
+for (const listItemEl of listItemElements) {
+  console.dir(listItemEl);
+}
+
+const h1 = document.getElementById('main-title');
+h1.textContent = 'Some new text for the moment';
+h1.style.color = 'white';
+h1.style.backgroundColor = 'purple';
+
+const li = document.querySelector('li:last-of-type');
+li.textContent = li.textContent + ' (Changed)';
+
+const body = document.body;
+body.querySelector('li:last-of-type');
+
+const ul = document.querySelector('ul');
+ul.children[0]; // array of list items
+console.dir(ul.children[0].textContent);
+
+ul.childNodes;
+console.dir(ul.childNodes); // shows empty text nodes
+
+ul.firstChild; // includes white space
+ul.firstElementChild; // Element
+ul.lastElementChild;
+
+// ----------------
+
+const liFirst = document.querySelector('li');
+liFirst.parentNode;
+liFirst.parentElement; // Nearest parent Element
+
+liFirst.closest('body'); // will look up scope to find nearest parent
+console.dir(liFirst.closest('body'));
+
+// get Parent Element
+const ulAgain = li.parentElement;
+console.dir(ulAgain);
+
+ulAgain.previousElementSibling; // sibling element before selected element
+console.dir(ulAgain.previousElementSibling); // Header
+
+console.dir(ulAgain.nextElementSibling); // sibling element after selected element
+```
+
+```js
+section.classList.toggle('visible'); // Toggle Class names
+```
