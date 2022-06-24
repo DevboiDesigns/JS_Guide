@@ -703,9 +703,12 @@ console.log(testResults.lastIndexOf(1.5)); // index 4
 ## Find
 
 - `find()`
-  1. single object of array
-  2. index of 1 single element
-  3. the full array
+
+**parameters**
+
+1. item iterated over
+2. index
+3. original array
 
 **parameter 2 & 3 not as common to use**
 
@@ -731,6 +734,12 @@ console.log(manuel, personDataArray);
 
 **will return index of matching condition**
 
+**parameters**
+
+1. item iterated over
+2. index
+3. original array
+
 ```js
 const manuelIndex = personDataArray.findIndex((person, idx, persons) => {
   return person.name === 'Manuel';
@@ -754,6 +763,12 @@ console.log(testResults.includes(1.5));
 - `forEach()`
 - easier access to index
 
+**parameters**
+
+1. item iterated over
+2. index
+3. original array
+
 ```js
 const prices = [10.99, 5.99, 3.99, 6.59];
 const tax = 0.19;
@@ -774,6 +789,249 @@ prices.forEach((price, idx, prices) => {
 console.log(taxAdjustedPrices);
 console.log(priceObjArr);
 ```
+
+## Map
+
+- `map()`
+
+**returns a new object/ array not a reference**
+
+```js
+const prices = [10.99, 5.99, 3.99, 6.59];
+const tax = 0.19;
+
+const taxAdjustedPrices = prices.map((price, idx, prices) => {
+  const priceObj = { index: idx, taxAdjPrice: Math.trunc(price * (1 + tax)) };
+  return priceObj;
+});
+
+console.log(taxAdjustedPrices);
+```
+
+## Sort
+
+- `sort()`
+
+```js
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return -1;
+  }
+});
+```
+
+**will reverse sort logic**
+
+```js
+if (a > b) {
+  return -1;
+} else if (a === b) {
+  return 0;
+} else {
+  return 1;
+}
+```
+
+## Reverse
+
+- `reverse()`
+
+**reverse an array**
+
+```js
+console.log(sortedPrices.reverse());
+```
+
+## Filter
+
+- `filter()`
+
+**parameters**
+
+1. item iterated over
+2. index
+3. original array
+
+**creates a new array, not a reference**
+
+```js
+const filteredArray = prices.filter((price, idx, prices) => {
+  return price > 6;
+});
+
+console.log(filteredArray);
+```
+
+**short hand**
+
+```js
+const filteredArray = prices.filter((price) => price > 6);
+```
+
+## Reduce
+
+- `reduce()`
+
+**parameters**
+
+1. previousValue = inital value / or value from last execution
+2. currentValue = current item being iterated
+3. currentIndex - less used
+4. originalArray - less used
+
+```js
+const sum = prices.reduce((prevValue, curValue, curIndex, prices) => {
+  return prevValue + curValue;
+}, 0); // 0 = previousValue
+
+console.log(sum);
+```
+
+## Split
+
+- `split()`
+- string method
+
+**parameter**
+
+1. character to set split on
+2. max amount of items to split
+
+```js
+const data = 'newyork;10.99;2000';
+
+const transformedData = data.split(';');
+
+console.log(transformedData);
+
+// limit of 2 items to split
+const transformedData = data.split(';', 2);
+```
+
+## Join
+
+- `join()`
+
+**parameter**
+
+1. character to join with
+
+_by default seperates with coma_
+
+```js
+const nameFragments = ['Max', 'Schwarz'];
+const name = nameFragments.join(' ');
+console.log(name); // Max Schwarz
+```
+
+## Spread Operator
+
+- `[...arrayToSpread]`
+- returns a new array not a reference
+- objects in array are references not new
+
+```js
+const copiedNameFragments = [...nameFragments, 'Tim'];
+console.log(copiedNameFragments);
+console.log(nameFragments);
+```
+
+- min returns smallest item (use case with spread operator)
+
+```js
+console.log(Math.min(...prices));
+```
+
+**Objects in copied array are references to originals**
+
+```js
+const personsArray = [
+  { name: 'Max', age: 30 },
+  { name: 'Manuel', age: 31 },
+];
+const copiedPersonsArray = [...personsArray];
+
+personsArray.push({ name: 'Anna', age: 29 });
+personsArray[0].age = 32;
+
+// both arrays will have Max with age 32
+console.log(personsArray, copiedPersonsArray);
+```
+
+**use map() to create a new object and not a reference to original objects**
+
+```js
+const copiedPersonsArray = [
+  ...personsArray.map((person) => ({ name: person.name, age: person.age })),
+];
+```
+
+## Destructuring
+
+- short hand for splitting array into variables
+
+```js
+const nameData = ['Max', 'Schwarz'];
+
+const [first, last] = nameData;
+
+console.log(first); // Max
+```
+
+**capture any remaining items with spread operator**
+
+```js
+const nameData = ['Max', 'Schwarz', 30, 'dog', 'ice cream'];
+
+const [first, last, ...otherInfo] = nameData;
+
+console.log(first); // Max
+
+console.log(otherInfo);
+```
+
+# Sets
+
+- data structure
+- store nested data
+- iterable, some special set methods available
+- order is not guranteed
+- duplicates are _NOT_ aloud
+- no index-based access
+
+```js
+// only way to make new set
+// can pass any iterable
+const ids = new Set([1, 2, 3]);
+ids.add(2); // Add
+ids.delete(2); // Delete
+// generally just check if is in set
+console.log(ids.has(2)); // true || false
+console.log(ids);
+
+for (const entry of ids.entries()) {
+  console.log(entry); // array of entries with values as keys
+}
+
+for (const entry of ids.values()) {
+  console.log(entry); // just values of all entries
+}
+```
+
+# Maps
+
+- data structure
+- store key-value data of any kind
+- any key value is allowed
+- iterable, some special map methods available
+- order is not guranteed
+- key-based access
+- duplicte _keys_ are _NOT_ aloud
+- duplicate _values_ are aloud
 
 # Error Handling
 
