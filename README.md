@@ -352,7 +352,7 @@ combine(showResult, 'SUB', 1, 2, 3, 4, 5, 6, 7, 8); // -36
 
 - BIND - a function that is not immediately called but set with parameters
 - properties used on bind method are passed first to the function being set
-- can use bind to pass an id property to function when called to identify element etc 
+- can use bind to pass an id property to function when called to identify element etc
 
 ```js
 combine(showResult.bind(this, 'adding'), 'ADD', 1, 2, 3, 4, 5); // 15
