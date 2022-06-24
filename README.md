@@ -558,6 +558,223 @@ outerWhile: do {
 - `break` = will exit out of a loop or function
 - `continue` = will skip iteration, and continue with next iteration
 
+# Arrays & Iterable protocol
+
+[Files](Lessons/Arrays-Iterables)
+
+## Creating
+
+1. `const numbers = [1, 2, 3]`
+2. `const moreNumbers = new Array('Hi', 'Welcome')`
+3. `const fixedArray = new Array(5)` will set empty array with max length 5
+4. `const anotherArray = Array.of(1, 2)`
+5. `const arrayAgain = Array.from('Welcome')` Converts iterable or array like - [w, e, l, c, o, m, e]
+6. `const personData = [30, 'Max', { moreDetails: 'Some details' }];` mixed types
+
+## Adding & Removing
+
+- `push()`
+
+**adds to end of array**
+
+```js
+const hobbies = ['Music', 'Food', 'Sports'];
+const newHobby = 'Dancing';
+hobbies.push(newHobby);
+```
+
+- `unshift()`
+
+**adds to beginning of array**
+
+```js
+hobbies.unshift('Coding');
+```
+
+- `pop()`
+
+**removes last item from array**
+
+```js
+hobbies.pop();
+```
+
+- `shift()`
+
+**removes first item in array**
+
+```js
+hobbies.shift();
+```
+
+- set index direct
+
+```js
+hobbies[1] = 'Coding';
+```
+
+- `splice(a, b, c)`
+  - a = index to insert at
+  - b = amount of index's to delete from a on
+  - c = items to be inserted
+
+```js
+hobbies.splice(0, 0, 'Cooking', 'Bike Riding');
+```
+
+**using splice to delete an item**
+
+```js
+hobbies.splice(1, 1);
+```
+
+```js
+hobbies.splice(-1, 1); // will start from end of array (-1 is last element)
+```
+
+**returns removed elements**
+
+```js
+const removedElements = hobbies.splice(1, 1);
+```
+
+## Ranges & Copies w/ slice()
+
+- `slice()`
+
+**exact copy = new array that will not be affected by original reference**
+
+```js
+const testResults = [1, 5.3, 1.5, 10.99, -5, 10];
+const storedResults = testResults.slice();
+
+testResults.push(5.91);
+
+console.log(testResults, storedResults);
+```
+
+**selecting ranges**
+
+**parameters return start and end of new array**
+
+```js
+const testResults = [1, 5.3, 1.5, 10.99, -5, 10];
+// 0 - start of array index || 2 - end of array index (is not included in array)
+const storedResults = testResults.slice(0, 2);
+
+testResults.push(5.91);
+
+console.log(testResults, storedResults);
+```
+
+**will select everything from start index to end of array**
+
+```js
+testResults.slice(3);
+```
+
+## Concat
+
+- `concat([])`
+
+```js
+const storedResults = testResults.concat([3.99, 2]); // will pull out all array items in concat([]) and add to old array making a New array
+```
+
+## indexOf() & lastIndexOf()
+
+- `indexOf()`
+
+will return the index of item passed to method, will stop after first value if there are duplicates
+
+```js
+const testResults = [1, 5.3, 1.5, 10.99, 1.5, 10];
+console.log(testResults.indexOf(1.5)); // index 2
+```
+
+- `lastIndexOf()`
+
+returns index going from opposite direction (from end of array)
+
+```js
+console.log(testResults.lastIndexOf(1.5)); // index 4
+```
+
+## Find
+
+- `find()`
+  1. single object of array
+  2. index of 1 single element
+  3. the full array
+
+**parameter 2 & 3 not as common to use**
+
+```js
+const personDataArray = [{ name: 'Max' }, { name: 'Manuel' }];
+// --------------------------------- #1 ----  #2 --------- #3
+const manuel = personDataArray.find((person, index, persons) => {
+  return person.name === 'Manuel';
+});
+```
+
+**find returns original item, changing value will also change original value**
+
+**not a copy**
+
+```js
+manuel.name = 'Anna';
+
+console.log(manuel, personDataArray);
+```
+
+- findIndex()
+
+**will return index of matching condition**
+
+```js
+const manuelIndex = personDataArray.findIndex((person, idx, persons) => {
+  return person.name === 'Manuel';
+});
+
+console.log(manuelIndex, 'Index'); // returns Index of matching item
+```
+
+## Includes
+
+- `includes()`
+
+**returns true or false if in array**
+
+```js
+console.log(testResults.includes(1.5));
+```
+
+## ForEach
+
+- `forEach()`
+- easier access to index
+
+```js
+const prices = [10.99, 5.99, 3.99, 6.59];
+const tax = 0.19;
+const taxAdjustedPrices = [];
+
+// for (const price of prices) {
+//   taxAdjustedPrices.push(Math.trunc(price * (1 + tax)));
+// }
+
+//
+let priceObjArr = [];
+prices.forEach((price, idx, prices) => {
+  const priceObj = { index: idx, taxAdjPrice: Math.trunc(price * (1 + tax)) };
+  taxAdjustedPrices.push(Math.trunc(price * (1 + tax)));
+  priceObjArr.push(priceObj);
+});
+
+console.log(taxAdjustedPrices);
+console.log(priceObjArr);
+```
+
 # Error Handling
 
 - `throw` - if marked will throw error when init
