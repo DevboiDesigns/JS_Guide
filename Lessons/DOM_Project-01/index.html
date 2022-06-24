@@ -27,8 +27,8 @@
         />
       </div>
       <div class="modal__actions">
-        <button class="btn btn--passive">Cancel</button>
-        <button class="btn btn--success">Add</button>
+        <button class="btn btn--passive" id="cancel-button">Cancel</button>
+        <button class="btn btn--success" id="confirm-add-movie">Add</button>
       </div>
     </div>
     <div class="modal" id="delete-modal">
@@ -38,14 +38,16 @@
         undone!
       </p>
       <div class="modal__actions">
-        <button class="btn btn--passive">No (Cancel)</button>
-        <button class="btn btn--danger">Yes</button>
+        <button class="btn btn--passive" id="cancel-delete-movie">
+          No (Cancel)
+        </button>
+        <button class="btn btn--danger" id="confirm-delete-movie">Yes</button>
       </div>
     </div>
 
     <header>
       <h1>Favorite Movies</h1>
-      <button>ADD MOVIE</button>
+      <button id="add-movie-button">ADD MOVIE</button>
     </header>
 
     <main>
