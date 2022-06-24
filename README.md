@@ -1032,6 +1032,98 @@ for (const entry of ids.values()) {
 - key-based access
 - duplicte _keys_ are _NOT_ aloud
 - duplicate _values_ are aloud
+- better performance for large quantities of data
+- better performance for adding and removing data frequently
+
+```js
+const person1 = { name: 'Max' };
+const person2 = { name: 'Manuel' };
+
+const personData = new Map([[person1, [{ date: 'yesterday', price: 10 }]]]);
+// Add to Map
+personData.set(person2, [{ date: 'two weeks ago', price: 100 }]);
+
+// Get object from by key as object name itself
+console.log(personData.get(person1));
+```
+
+**get all entries**
+
+```js
+for (const entry of personData.entries()) {
+  console.log(entry);
+}
+```
+
+**destructuring entries**
+
+```js
+for (const [key, value] of personData.entries()) {
+  console.log(key, value);
+}
+```
+
+**access keys only**
+
+```js
+for (const key of personData.keys()) {
+  console.log(key);
+}
+```
+
+**access values only**
+
+```js
+for (const value of personData.values()) {
+  console.log(value);
+}
+```
+
+**other map methods**
+
+- `clear()` - clear all data from map
+- `delete()` delete single entry
+- `forEach()` - go through all
+- `size` - total of map
+
+## Weak Sets & Weak Maps
+
+### Weak Sets
+
+- has to be object data
+- able to be garbage collected and discarded once no longer in use
+
+1. `add()`
+2. `delete()`
+3. `has()`
+
+```js
+let personAgain = { name: 'Max' };
+const personsAgain = new WeakSet();
+personsAgain.add(personAgain);
+
+// ... some operations
+personAgain = null;
+
+console.log(personsAgain);
+```
+
+### Weak Maps
+
+- has to be object data
+- able to be garbage collected and discarded once no longer in use
+
+1. `delete()`
+2. `get()`
+3. `has()`
+4. `set()`
+
+```js
+const personableData = new WeakMap();
+personableData.set(person1, 'Extra info');
+
+console.log(personableData);
+```
 
 # Error Handling
 
