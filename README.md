@@ -624,6 +624,7 @@ _e.g. sending data to a server_
 
 # DOM & HTML Code
 
+- Document Object Model
 - exposed WEB API to allow JS to work with parsed document
 
 ## Document
@@ -644,7 +645,7 @@ _e.g. sending data to a server_
 **Returns single element, by CSS selector, by ID**
 **DOM nodes are just JS objects, reference values: these methods return object reference**
 
-- `querySelector()`
+- `querySelector()` - querySelector('.message') - classes (.) / ids(#)
 - `getElementById()`
 
 **returns collections of elements (array like objects): NodeList**
